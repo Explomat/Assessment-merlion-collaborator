@@ -5,7 +5,7 @@ var Node = React.createClass({
 	render: function(){
 		return(
 			<li className={this.props.classes}>
-				<a>{this.props.value}</a>
+				<span>{this.props.value}</span>
 			</li>
 		);
 	}
@@ -66,24 +66,21 @@ var TreeNode = React.createClass({
     	var name = this.props.data.cols[0];
     	var len = this.props.data.cols.length;
     	var elems = [];
-    	var childs = [];
 
     	for (var i = 1; i < len; i++) {
 			elems.push(<Node key={i} classes={classes + " data" + (i + 2)} value={this.props.data.cols[i]}/>);
 		}
 
-		this.state.children.forEach(function(c, i){
-			childs.push(<TreeNode key={c.id + i + Math.random(0, 1)} data={c} isExpand={this.props.isExpand} />)
-		}.bind(this));
-
         return (
         	<div className="raiting-table__body">
         		<ul className="raiting-table__row">
-        			<li key={0} className={classes + " data1"} onClick={this.onChildDisplayToggle}><a>{name}</a></li>
+        			<li key={0} className={classes + " data1"} onClick={this.onChildDisplayToggle}><span>{name}</span></li>
 		            {elems}
 	            </ul>
                 <div>
-                	{childs}
+                	{this.state.children.map(function(c, i){
+						return <TreeNode key={c.id + i + Math.random(0, 1)} data={c} isExpand={this.props.isExpand} />
+					}.bind(this))}
                 </div>
             </div>
         );
