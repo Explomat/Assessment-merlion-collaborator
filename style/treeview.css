@@ -1,0 +1,66 @@
+.category-tree{
+    margin: 0;
+    padding: 0;
+}
+.category-tree a{
+    text-decoration: none;
+
+    color: #444;
+}
+.category-tree ul{
+    margin: 0;
+    margin-bottom: 6px;
+    padding: 0 0 0 0;
+}
+.category-tree li{
+    position: relative;
+
+    list-style-type: none;
+}
+.category-tree a{
+    cursor: pointer;
+}
+.category-tree li:first-of-type::before{
+    font-size: 20px;
+    line-height: 18px;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    margin: 0 10px 0 0;
+
+    content: '';
+    text-align: center;
+    border-radius: 3px;
+    background: #cc0035;
+    color:#fff;
+    font-weight: bold;
+}
+.category-tree .raiting-table__body ul.raiting-table__row:hover{
+    background: #F6E8E8;  /* #F6E8E8 */
+}
+.category-tree:not(:first-child):before, .category-tree .has-children.open:not(:first-child):before{
+    display: none;
+}
+.category-tree .has-children:first-child:before{
+    content: '\2b';
+}
+.category-tree .has-children:first-child:before, .category-tree .has-children.open:before{
+    display: inline-block;
+    cursor: pointer;
+}
+.category-tree .has-children.open:before{
+    content: '-';
+}
+button[type="button"].btn, button[type="button"].btn:hover{
+    outline: 0;
+}
+button[type="button"].btn.pull-right, button[type="button"].btn-primary{
+    border-color: #cc0035;
+    background: #cc0035;
+    color:#fff;
+}
+
+.topmenu>p{
+    margin: 5px auto;
+    float: left;
+}
