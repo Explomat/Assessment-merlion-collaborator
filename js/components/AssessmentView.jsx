@@ -33,8 +33,15 @@ var AssessmentView = React.createClass({
 	},
 
 	render:function () {
+		var isExpandTitle = this.state.isExpand ? "Скрыть всех" : "Раскрыть всех";
+		var isExpandClass = this.state.isExpand ? "glyphicon glyphicon-minus" : "glyphicon glyphicon-plus";
 		return (
 			<div className="panel panel-default">
+				<div className="panel-heading">
+					<button title={isExpandTitle} type="button" className="btn btn-primary btn-sm" onClick={this.handleExpandAll}>
+						<span className={isExpandClass}></span>
+					</button>
+				</div>
 				<div className="panel-body">
 					<TableTreeView data={this.state.collaborators} isExpand={this.state.isExpand} header={['Название', 'Вес']} />
 				</div>

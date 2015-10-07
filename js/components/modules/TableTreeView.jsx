@@ -1,11 +1,15 @@
 var React = require('react/addons');
 
-var Node = React.createClass({
+var NodeProgress = React.createClass({
 
 	render: function(){
+		var style = { width: this.props.value + '%' };
+		var isSuccess = Number(this.props.value) >= 50 ? 'progress-bar-success' : 'progress-bar-danger';
 		return(
-			<li className={this.props.classes}>
-				<span>{this.props.value}</span>
+			<li className={"progress " + this.props.classes}>
+			  <div className={"progress-bar " + isSuccess} style={style}>
+			    <span>{this.props.value + '%'}</span>
+			  </div>
 			</li>
 		);
 	}
@@ -64,11 +68,12 @@ var TreeNode = React.createClass({
         });
 
     	var name = this.props.data.cols[0];
+    	var weight = this.props.data.cols[1];
     	var len = this.props.data.cols.length;
     	var elems = [];
 
-    	for (var i = 1; i < len; i++) {
-			elems.push(<Node key={i} classes={classes + " data" + (i + 2)} value={this.props.data.cols[i]}/>);
+    	if (weight) {
+			elems.push(<NodeProgress key={1} classes={classes + " data2"} value={weight}/>);
 		}
 
         return (

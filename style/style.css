@@ -58,9 +58,7 @@ textarea {
     min-width: 600px;
     font-family:Calibri, Helvetica, serif;
     color:#444;
-    width:55%;
-    margin:100px auto 100px;
-    padding:30px;
+    padding:15px;
     border:1px solid #ddd;
     background:#f6f6f6;
     -webkit-border-radius:4px;

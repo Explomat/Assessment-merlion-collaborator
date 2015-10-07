@@ -11,8 +11,8 @@
 	width: 100%;
 	height: 50px;
 	padding-right: 17px;
-	background: #CC0035;
-    box-shadow: inset 0 -40px 100px -50px #790000;
+	background-color: #428BCA;
+    border-color: #357EBD;
 	color: #FFFFFF;
 }
 div.panel-body{
