@@ -4,6 +4,7 @@ var Config = require('../config');
 
 module.exports = {
 	getData: function(){
-		return Ajax.sendRequest(Config.url.createPath({action_name: 'getAssessment'}));
+		var userId = Ajax.getUrlVars(window.location.href)['user'];
+		return Ajax.sendRequest(Config.url.createPath({action_name: 'getAssessment', user: userId}));
 	}
 }

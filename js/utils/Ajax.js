@@ -3,6 +3,15 @@ var AJAX_TIME_OVER = 10000;
 
 module.exports = {
 
+    getUrlVars: function() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+            function(m, key, value) {
+                vars[key] = value;
+            });
+        return vars;
+    },
+
     getXmlHttp: function(){
         var xmlHttp;
         try { xmlHttp = new ActiveXObject("Msxml2.XMLHTTP"); }

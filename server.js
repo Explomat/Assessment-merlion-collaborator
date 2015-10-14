@@ -30,8 +30,11 @@ function stringifyWT(obj) {
 	return outStr;
 }
 
-function getAssessment(){
-	var pa = ArrayOptFirstElem(XQuery("sql:select pas.id from pas where pas.person_id="+curUserID));
+function getAssessment(queryObjects){
+	var userId = queryObjects.GetOptProperty('user');
+	userId = userId == 'undefined' || userId == undefined ? curUserID : userId;
+	return userId;
+	var pa = ArrayOptFirstElem(XQuery("sql:select pas.id from pas where pas.person_id=" + userId));
 	var outCompentences = [];
 	if (pa == undefined) return stringifyWT({ collaborators: outCompentences});
 
