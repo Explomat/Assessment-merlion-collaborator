@@ -43,7 +43,7 @@ var AssessmentView = React.createClass({
 					</button>
 				</div>
 				<div className="panel-body">
-					<TableTreeView data={this.state.collaborators} isExpand={this.state.isExpand} header={['Название', 'Вес']} />
+					<TableTreeView data={this.state.collaborators} isExpand={this.state.isExpand} header={['Название', 'Оценка']} />
 				</div>
 			</div>
 		);

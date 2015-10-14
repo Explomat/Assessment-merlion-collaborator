@@ -33,7 +33,6 @@ function stringifyWT(obj) {
 function getAssessment(queryObjects){
 	var userId = queryObjects.GetOptProperty('user');
 	userId = userId == 'undefined' || userId == undefined ? curUserID : userId;
-	return userId;
 	var pa = ArrayOptFirstElem(XQuery("sql:select pas.id from pas where pas.person_id=" + userId));
 	var outCompentences = [];
 	if (pa == undefined) return stringifyWT({ collaborators: outCompentences});
@@ -44,7 +43,7 @@ function getAssessment(queryObjects){
 		compObj = { id: c.competence_id + '', cols: [compName + ''], children: [] }
 		for (i in c.indicators) {
 			indName = OpenDoc(UrlFromDocID(Int(i.indicator_id))).TopElem.name;
-			compObj.children.push({ id: i.indicator_id + '', cols: [ indName+'', i.weight + '' ] });
+			compObj.children.push({ id: i.indicator_id + '', cols: [ StrReplace(indName + '', '"', ''), Int(i.mark_value * 100) ] });
 		}
 		outCompentences.push(compObj);
 	}
