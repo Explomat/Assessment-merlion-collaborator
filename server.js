@@ -1,4 +1,6 @@
 <%
+var KNOLEDGE_TYPE = 1;
+
 function stringifyWT(obj) {
 	var type = DataType(obj);
 	var curObj = obj;
@@ -42,8 +44,10 @@ function getAssessment(queryObjects){
 		compName = OpenDoc(UrlFromDocID(Int(c.competence_id))).TopElem.name;
 		compObj = { id: c.competence_id + '', cols: [compName + ''], children: [] }
 		for (i in c.indicators) {
-			indName = OpenDoc(UrlFromDocID(Int(i.indicator_id))).TopElem.name;
-			compObj.children.push({ id: i.indicator_id + '', cols: [ StrReplace(indName + '', '"', ''), Int(i.mark_value * 100) ] });
+			indDoc = OpenDoc(UrlFromDocID(Int(i.indicator_id)));
+			markValue = i.mark_value == null ? 0 : i.mark_value;
+			markValue = indDoc.TopElem.type == KNOLEDGE_TYPE ? markValue * 100 : markValue;
+			compObj.children.push({ id: i.indicator_id + '', cols: [ StrReplace(indDoc.TopElem.name + '', '"', ''), Int(markValue) ] });
 		}
 		outCompentences.push(compObj);
 	}
