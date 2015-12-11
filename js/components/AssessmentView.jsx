@@ -24,7 +24,7 @@ var AssessmentView = React.createClass({
 
 	getInitialState: function () {
 		var data = getData(); 
-		data.isExpand = true;
+		data.isExpand = false;
 		return data;
 	},
 

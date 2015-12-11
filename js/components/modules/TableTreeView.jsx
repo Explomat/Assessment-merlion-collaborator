@@ -8,7 +8,7 @@ var NodeProgress = React.createClass({
 		return(
 			<li className={"progress " + this.props.classes}>
 			  <div className={"progress-bar " + isSuccess} style={style}>
-			    <span>{this.props.value + '%'}</span>
+			    <span className="progress-bar__value">{this.props.value + '%'}</span>
 			  </div>
 			</li>
 		);

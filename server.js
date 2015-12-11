@@ -1,5 +1,15 @@
 <%
-var KNOLEDGE_TYPE = 1;
+var KNOLEDGE_TYPE = 1; //знание
+
+var startSourcePercent = 50;
+
+function getDestPersent(_startPercent, _startSourcePercent){
+	_startPercent = Int(_startPercent);
+	_startSourcePercent = _startSourcePercent == undefined ? startSourcePercent : Int(_startSourcePercent);
+	if (_startPercent < 50) return 0;
+	var diff = _startPercent - _startSourcePercent;
+	return diff * 2;
+}
 
 function stringifyWT(obj) {
 	var type = DataType(obj);
@@ -42,13 +52,17 @@ function getAssessment(queryObjects){
 	var competences = OpenDoc(UrlFromDocID(Int(pa.id))).TopElem.competences;
 	for (c in competences){
 		compName = OpenDoc(UrlFromDocID(Int(c.competence_id))).TopElem.name;
-		compObj = { id: c.competence_id + '', cols: [compName + ''], children: [] }
+		compObj = { id: c.competence_id + '', cols: [compName + ''], children: [] };
+		compValue = 0;
 		for (i in c.indicators) {
 			indDoc = OpenDoc(UrlFromDocID(Int(i.indicator_id)));
 			markValue = i.mark_value == null ? 0 : i.mark_value;
 			markValue = indDoc.TopElem.type == KNOLEDGE_TYPE ? markValue * 100 : markValue;
+			compValue = compValue + (indDoc.TopElem.type == KNOLEDGE_TYPE ? getDestPersent(markValue) : markValue);
 			compObj.children.push({ id: i.indicator_id + '', cols: [ StrReplace(indDoc.TopElem.name + '', '"', ''), Int(markValue) ] });
 		}
+		compValue = compValue / ArrayCount(c.indicators);
+		compObj.cols.push(Int(compValue) + '');
 		outCompentences.push(compObj);
 	}
 	return stringifyWT({ collaborators: outCompentences});

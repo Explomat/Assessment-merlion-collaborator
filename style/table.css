@@ -35,7 +35,6 @@ div.panel-body{
 }
 .table-container .raiting-table--scroll{
 	overflow-y: scroll;
-
 	height: 500px;
 }
 .table-container .raiting-table__body{
@@ -50,13 +49,13 @@ td:not(:nth-of-type(2)){
 	display: table;
 	width: 100%;
 	height: 35px;
-	margin: 0;
+	margin: 0 0 1px 0;
 	padding: 0;
 }
 div.raiting-table__body ul:nth-child(2n){
 	background: #B6FCD0;
 }
-.table-container .raiting-table__body div{
+.table-container .raiting-table__body > div{
 	height: 0;
 }
 .table-container div.raiting-table__body li{
@@ -122,9 +121,8 @@ input.form-control{
 	border: 1px solid #FFF;
 }
 
-input {
-	width: 100%;
-	height: 35px;
-	border-radius: 5px;
-	outline: 0;
+.progress .progress-bar__value{
+	display: inline-block;
+    line-height: 35px;
+	padding: 0 5px;
 }
