@@ -57,7 +57,6 @@ function getAssessment(queryObjects){
 		for (i in c.indicators) {
 			indDoc = OpenDoc(UrlFromDocID(Int(i.indicator_id)));
 			markValue = i.mark_value == null ? 0 : i.mark_value;
-			markValue = indDoc.TopElem.type == KNOLEDGE_TYPE ? markValue * 100 : markValue;
 			compValue = compValue + (indDoc.TopElem.type == KNOLEDGE_TYPE ? getDestPersent(markValue) : markValue);
 			compObj.children.push({ id: i.indicator_id + '', cols: [ StrReplace(indDoc.TopElem.name + '', '"', ''), Int(markValue) ] });
 		}
